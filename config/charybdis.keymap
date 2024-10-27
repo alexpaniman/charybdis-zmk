@@ -5,7 +5,7 @@
 #include <dt-bindings/zmk/mouse.h>
 #include <dt-bindings/zmk/outputs.h>
 
-#define U_TAPPING_TERM 200
+#define U_TAPPING_TERM 150
 
 #define TAPHOLD_SYMBOL(NAME, TAP, HOLD) \
      NAME: NAME { \
@@ -90,7 +90,7 @@
             label = "u_mt";
             #binding-cells = <2>;
             tapping_term_ms = <U_TAPPING_TERM>;
-            flavor = "tap-preferred";
+            flavor = "balanced";
             bindings = <&kp>, <&kp>;
         };
 
@@ -99,7 +99,7 @@
             label = "u_lt";
             #binding-cells = <2>;
             tapping_term_ms = <U_TAPPING_TERM>;
-            flavor = "tap-preferred";
+            flavor = "balanced";
             bindings = <&mo>, <&kp>;
         };
 
@@ -114,10 +114,10 @@
         };
 
         td0: tap_dance_0 {
-            compatible = "zmk,behavior-tap-dance";
+            compatible = "zmk,behavior-hold-tap";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&ctrl_backspace>, <&kp BKSP>;
+            bindings = <&kp BKSP>, <&ctrl_backspace>;
         };
     };
 
@@ -169,7 +169,7 @@
         NAV {
             bindings = <
 &none               &kp PSCRN          &kp F1  &kp F4  &kp F7  &kp F10       &kp END   &kp PG_DN  &kp PG_UP  &kp HOME   &none  &kp CAPS
-&shift_printscreen  &ctrl_printscreen  &kp F2  &kp F5  &kp F8  &kp F11       &kp LEFT  &kp DOWN   &kp    UP  &kp RIGHT  &none  &none
+&shift_printscreen  &ctrl_printscreen  &kp F2  &kp F5  &kp F8  &kp F11       &kp LEFT  &kp DOWN   &kp    UP  &kp RIGHT  &mp 4  &mp 5
 &trans              &none              &kp F3  &kp F6  &kp F9  &kp F12       &none     &none      &none      &none      &none  &none
 
 &trans    &trans    &trans                               &kp LCTRL    &kp RGUI
@@ -191,6 +191,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+
 &mkp LCLK  &mkp MCLK  &mkp RCLK                      &trans  &trans
             >;
         };
@@ -200,6 +201,17 @@
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+
+&trans  &trans  &trans                               &trans  &trans
+            >;
+        };
+
+        SNIPE {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+
 &trans  &trans  &trans                               &trans  &trans
             >;
         };
