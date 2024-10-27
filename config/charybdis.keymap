@@ -7,6 +7,19 @@
 
 #define U_TAPPING_TERM 200
 
+#define TAPHOLD_SYMBOL(NAME, TAP, HOLD) \
+     NAME: NAME { \
+        compatible = "zmk,behavior-hold-tap"; \
+        label = ZMK_MACRO_STRINGIFY(NAME); \
+        #binding-cells = <2>; \
+        tapping-term-ms = <TAPPING_TERM>; \
+        flavor = "tap-preferred"; \
+        quick-tap-ms = <QUICK_TAP_TERM>; \
+        require-prior-idle-ms = <QUICK_TAP_TERM>; \
+        bindings = <HOLD>, <TAP>; \
+    };
+
+
 / {
     chosen { zmk,matrix_transform = &default_transform; };
 };
@@ -101,54 +114,90 @@
         };
     };
 
+    macros {
+        ctrl_backspace: ctrl_backspace {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL>
+                , <&macro_tap &kp BKSP>
+                , <&macro_release &kp LCTRL>
+                ;
+        };
+
+        shift_printscreen: shift_printscreen {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LSHIFT>
+                , <&macro_tap &kp PSCRN>
+                , <&macro_release &kp LSHIFT>
+                ;
+        };
+
+        ctrl_printscreen: ctrl_printscreen {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL>
+                , <&macro_tap &kp PSCRN>
+                , <&macro_release &kp LCTRL>
+                ;
+        };
+    };
+
+    symbols {
+        TAPHOLD_SYMBOL(deleter, &ctrl_backspace, &kp BKSP)
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         BASE {
             bindings = <
-&kp TAB           &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I      &kp O    &kp P     &kp LBRC
-&u_mt LCTRL ESC   &kp A  &kp S  &kp D  &kp F  &kp G  &kp H  &kp J  &kp K      &kp L    &kp SEMI  &kp APOS
-&kp LALT          &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RET  // LALT on hold, RALT on press
+&kp TAB          &kp Q  &kp W  &kp E  &kp R  &kp T       &kp Y  &kp U  &kp I      &kp O    &kp P     &kp LBRC
+&u_mt LCTRL ESC  &kp A  &kp S  &kp D  &kp F  &kp G       &kp H  &kp J  &kp K      &kp L    &kp SEMI  &kp APOS
+&u_mt LALT RALT  &kp Z  &kp X  &kp C  &kp V  &kp B       &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RET
 
-&lt 1 DEL     &kp LSHIFT     &lt 2 K_APP    &u_mt LCTRL SPACE    &u_mt RGUI BKSP
+&lt 1 DEL    &kp LSHIFT    &lt 2 K_APP                   &u_mt LCTRL SPACE    &u_mt RGUI BKSP
             >;
         };
 
         NAV {
             bindings = <
-&none   &kp PSCRN  &kp F1  &kp F4  &kp F7  &kp F10  &kp END   &kp PG_DN  &kp PG_UP  &kp HOME   &none  &kp CAPS
-&none   &none      &kp F2  &kp F5  &kp F8  &kp F11  &kp LEFT  &kp DOWN   &kp    UP  &kp RIGHT  &none  &none // implement M2 M1
-&trans  &none      &kp F3  &kp F6  &kp F9  &kp F12  &none     &none      &none      &none      &none  &none
+&none               &kp PSCRN          &kp F1  &kp F4  &kp F7  &kp F10       &kp END   &kp PG_DN  &kp PG_UP  &kp HOME   &none  &kp CAPS
+&shift_printscreen  &ctrl_printscreen  &kp F2  &kp F5  &kp F8  &kp F11       &kp LEFT  &kp DOWN   &kp    UP  &kp RIGHT  &none  &none
+&trans              &none              &kp F3  &kp F6  &kp F9  &kp F12       &none     &none      &none      &none      &none  &none
 
-&trans     &trans     &trans    &kp LCTRL    &kp RGUI
+&trans    &trans    &trans                               &kp LCTRL    &kp RGUI
             >;
         };
 
         SYMNUM {
             bindings = <
-&trans      &none          &kp LPAR      &kp RPAR      &none     &none         &kp KP_MULTIPLY  &kp N7  &kp N8  &kp N9  &kp MINUS     &none
-&kp LSHIFT  &kp LS(MINUS)  &kp LBRC      &kp RBRC      &kp BSLH  &kp LS(BSLH)  &kp N0           &kp N4  &kp N5  &kp N6  &kp PLUS      &none
-&trans      &none          &kp LS(LBRC)  &kp LS(RBRC)  &none     &none         &kp KP_DIVIDE    &kp N1  &kp N2  &kp N3  &kp LS(PLUS)  &kp RET
+&trans      &none          &kp LPAR  &kp RPAR  &none     &none              &kp KP_MULTIPLY  &kp N7  &kp N8  &kp N9  &kp MINUS     &none
+&kp LSHIFT  &kp LS(MINUS)  &kp LBKT  &kp RBKT  &kp BSLH  &kp LS(BSLH)       &kp N0           &kp N4  &kp N5  &kp N6  &kp PLUS      &none
+&trans      &none          &kp LBRC  &kp RBRC  &none     &none              &kp KP_DIVIDE    &kp N1  &kp N2  &kp N3  &kp LS(PLUS)  &kp RET
 
-&trans     &trans     &trans    &kp SPACE    &kp BKSP // BKSP macro
+&trans    &trans    &trans                                                  &kp SPACE    &deleter // BKSP macro
             >;
         };
 
         AUTO-MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans     &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans     &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans     &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
-                        &mkp LCLK  &trans  &mkp RCLK    &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&mkp LCLK  &mkp MCLK  &mkp RCLK                      &trans  &trans
             >;
         };
 
         SCROLL {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans                               &trans  &trans
             >;
         };
     };
