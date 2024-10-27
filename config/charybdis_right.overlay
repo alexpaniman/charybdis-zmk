@@ -37,6 +37,13 @@
     };
 };
 
+&hid_trackball_interface {
+    automouse-layer = <1>;
+    automouse-layer-timeout-ms = <400>;
+    scroll-layers = <2>;
+    snipe-layers = <3>;
+};
+
 / {
     trackball_listener {
         compatible = "zmk,input-listener";
