@@ -114,10 +114,10 @@
         };
 
         td0: tap_dance_0 {
-            compatible = "zmk,behavior-tap-dance";
+            compatible = "zmk,behavior-hold-tap";
             #binding-cells = <0>;
             tapping-term-ms = <150>;
-            bindings = <&kp BKSP>, <&ctrl_backspace>;
+            bindings = <&kp>, <&ctrl_backspace>;
         };
     };
 
@@ -158,7 +158,7 @@
 
         BASE {
             bindings = <
-&kp TAB          &kp Q  &kp W  &kp E  &kp R  &kp T       &kp Y  &kp U  &kp I      &kp O    &kp P     &kp LBRC
+&kp TAB          &kp Q  &kp W  &kp E  &kp R  &kp T       &kp Y  &kp U  &kp I      &kp O    &kp P     &kp LBKT
 &u_mt LCTRL ESC  &kp A  &kp S  &kp D  &kp F  &kp G       &kp H  &kp J  &kp K      &kp L    &kp SEMI  &kp APOS
 &u_mt LALT RALT  &kp Z  &kp X  &kp C  &kp V  &kp B       &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RET
 
@@ -172,27 +172,27 @@
 &shift_printscreen  &ctrl_printscreen  &kp F2  &kp F5  &kp F8  &kp F11       &kp LEFT  &kp DOWN   &kp    UP  &kp RIGHT  &mo 4  &mo 5
 &trans              &none              &kp F3  &kp F6  &kp F9  &kp F12       &none     &none      &none      &none      &none  &none
 
-&trans    &trans    &trans                               &kp LCTRL    &kp RGUI
+&trans    &trans    &trans                                                   &kp LCTRL    &kp RGUI
             >;
         };
 
         SYMNUM {
             bindings = <
-&trans      &none          &kp LPAR  &kp RPAR  &none     &none              &kp KP_MULTIPLY  &kp N7  &kp N8  &kp N9  &kp MINUS     &none
-&kp LSHIFT  &kp LS(MINUS)  &kp LBKT  &kp RBKT  &kp BSLH  &kp LS(BSLH)       &kp N0           &kp N4  &kp N5  &kp N6  &kp PLUS      &none
-&trans      &none          &kp LBRC  &kp RBRC  &none     &none              &kp KP_DIVIDE    &kp N1  &kp N2  &kp N3  &kp LS(PLUS)  &kp RET
+&trans      &none          &kp LPAR  &kp RPAR  &none     &none              &kp KP_MULTIPLY  &kp N7  &kp N8  &kp N9  &kp MINUS  &none
+&kp LSHIFT  &kp LS(MINUS)  &kp LBKT  &kp RBKT  &kp BSLH  &kp LS(BSLH)       &kp N0           &kp N4  &kp N5  &kp N6  &kp PLUS   &none
+&trans      &none          &kp LBRC  &kp RBRC  &none     &none              &kp KP_DIVIDE    &kp N1  &kp N2  &kp N3  &kp EQUAL  &kp RET
 
-&trans    &trans    &trans                                                  &kp SPACE    &td0 // BKSP macro
+&trans    &trans    &trans                                                  &kp SPACE    &td0 BKSP 0 // BKSP macro
             >;
         };
 
         AUTO-MOUSE {
             bindings = <
-&trans     &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
-&kp LCTRL  &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &kp RGUI
-&trans     &trans  &trans  &trans  &trans  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans     &trans    &trans      &trans    &trans    &trans       &trans  &trans     &trans  &trans  &trans  &trans
+&kp LSHIFT &kp LALT  &mo    5    &mo     4 &kp RGUI  &trans       &trans  &kp LCTRL  &trans  &trans  &trans  &trans
+&trans     &trans    &trans      &trans    &trans    &trans       &trans  &trans     &trans  &trans  &trans  &trans
 
-&mkp LCLK  &mkp MCLK  &mkp RCLK                         &trans  &trans
+&mkp LCLK  &mkp MCLK  &mkp RCLK                      &trans  &trans
             >;
         };
 
