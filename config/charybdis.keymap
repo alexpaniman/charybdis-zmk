@@ -124,7 +124,7 @@
     macros {
         ctrl_backspace: ctrl_backspace {
             compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
+            #binding-cells = <1>;
             bindings
                 = <&macro_press &kp LCTRL>
                 , <&macro_tap &kp BKSP>
