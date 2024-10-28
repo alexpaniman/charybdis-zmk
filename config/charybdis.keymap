@@ -115,7 +115,7 @@
 
         td0: tap_dance_0 {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             tapping-term-ms = <150>;
             bindings = <&kp>, <&ctrl_backspace>;
         };
@@ -182,7 +182,7 @@
 &kp LSHIFT  &kp LS(MINUS)  &kp LBKT  &kp RBKT  &kp BSLH  &kp LS(BSLH)       &kp N0           &kp N4  &kp N5  &kp N6  &kp PLUS   &none
 &trans      &none          &kp LBRC  &kp RBRC  &none     &none              &kp KP_DIVIDE    &kp N1  &kp N2  &kp N3  &kp EQUAL  &kp RET
 
-&trans    &trans    &trans                                                  &kp SPACE    &td0 BKSP 0 // BKSP macro
+&trans    &trans    &trans                                                  &kp SPACE    &td0 BKSP // BKSP macro
             >;
         };
 
