@@ -165,7 +165,7 @@
 &kp LSHIFT  &kp LS(MINUS)  &kp LBKT  &kp RBKT  &kp BSLH  &kp LS(BSLH)       &kp N0           &kp N4  &kp N5  &kp N6  &kp PLUS   &none
 &trans      &none          &kp LBRC  &kp RBRC  &none     &none              &kp KP_DIVIDE    &kp N1  &kp N2  &kp N3  &kp EQUAL  &kp RET
 
-&trans    &trans    &trans                                                  &kp SPACE    &u_mt BKSP LS(BKSP) // BKSP macro
+&trans    &trans    &trans                                                  &kp SPACE    &u_mt BKSP LC(BKSP) // BKSP macro
             >;
         };
 
