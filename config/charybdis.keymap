@@ -112,26 +112,9 @@
             hold-trigger-key-positions = <40>;
             tapping-term-ms = <100>;
         };
-
-        td0: tap_dance_0 {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <150>;
-            bindings = <&kp>, <&ctrl_backspace>;
-        };
     };
 
     macros {
-        ctrl_backspace: ctrl_backspace {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <1>;
-            bindings
-                = <&macro_press &kp LCTRL>
-                , <&macro_tap &kp BKSP>
-                , <&macro_release &kp LCTRL>
-                ;
-        };
-
         shift_printscreen: shift_printscreen {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -182,7 +165,7 @@
 &kp LSHIFT  &kp LS(MINUS)  &kp LBKT  &kp RBKT  &kp BSLH  &kp LS(BSLH)       &kp N0           &kp N4  &kp N5  &kp N6  &kp PLUS   &none
 &trans      &none          &kp LBRC  &kp RBRC  &none     &none              &kp KP_DIVIDE    &kp N1  &kp N2  &kp N3  &kp EQUAL  &kp RET
 
-&trans    &trans    &trans                                                  &kp SPACE    &td0 BKSP // BKSP macro
+&trans    &trans    &trans                                                  &kp SPACE    &u_mt BKSP LS(BKSP) // BKSP macro
             >;
         };
 
