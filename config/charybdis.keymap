@@ -185,7 +185,7 @@
 &kp LSHIFT &kp LALT  &mo    5    &none     &kp RGUI  &trans       &trans  &kp LCTRL  &trans  &trans  &trans  &trans
 &trans     &trans    &trans      &trans    &trans    &trans       &trans  &trans     &trans  &trans  &trans  &trans
 
-&trans  &trans  &trans                      &trans  &trans
+&trans  &trans  &trans                               &trans  &trans
             >;
         };
 
@@ -195,7 +195,7 @@
 &kp LSHIFT &kp LALT  &none       &mo     4 &kp RGUI  &trans       &trans  &kp LCTRL  &trans  &trans  &trans  &trans
 &trans     &trans    &trans      &trans    &trans    &trans       &trans  &trans     &trans  &trans  &trans  &trans
 
-&trans  &trans  &trans                      &trans  &trans
+&mkp LCLK  &mkp MCLK  &mkp RCLK                      &trans  &trans
             >;
         };
     };
