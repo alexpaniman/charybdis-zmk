@@ -151,9 +151,9 @@
 
         NAV {
             bindings = <
-&none               &kp PSCRN          &kp F1  &kp F4  &kp F7  &kp F10       &kp END   &kp PG_DN  &kp PG_UP  &kp HOME   &none  &kp CAPS
-&shift_printscreen  &ctrl_printscreen  &kp F2  &kp F5  &kp F8  &kp F11       &kp LEFT  &kp DOWN   &kp    UP  &kp RIGHT  &mo 4  &mo 5
-&trans              &none              &kp F3  &kp F6  &kp F9  &kp F12       &none     &none      &none      &none      &none  &none
+&none               &kp PSCRN          &kp F1  &kp F4  &kp F7  &kp F10       &kp END   &kp PG_DN  &kp PG_UP  &kp HOME   &bt BT_CLR_ALL  &kp CAPS
+&shift_printscreen  &ctrl_printscreen  &kp F2  &kp F5  &kp F8  &kp F11       &kp LEFT  &kp DOWN   &kp    UP  &kp RIGHT  &mo 4           &mo 5
+&trans              &bt BT_NXT         &kp F3  &kp F6  &kp F9  &kp F12       &none     &none      &none      &none      &none           &bt BT_CLR
 
 &trans    &trans    &trans                                                   &kp LCTRL    &kp RGUI
             >;
