@@ -98,7 +98,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "u_mt";
             #binding-cells = <2>;
-            tapping_term_ms = 120;
+            tapping_term_ms = <120>;
             flavor = "hold-preferred";
             bindings = <&kp>, <&kp>;
         };
@@ -116,7 +116,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "u_lt";
             #binding-cells = <2>;
-            tapping_term_ms = 120;
+            tapping_term_ms = <120>;
             flavor = "hold-preferred";
             bindings = <&mo>, <&kp>;
         };
