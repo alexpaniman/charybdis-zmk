@@ -136,7 +136,6 @@
             #binding-cells = <0>;
             bindings = <&u_mt LCTRL ESC>, <&kp GRAVE>;
             mods = <(MOD_RGUI)>;
-            keep-mods = <>;
         };
     };
 
