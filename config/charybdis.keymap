@@ -94,12 +94,30 @@
             bindings = <&kp>, <&kp>;
         };
 
+        h_mt: h_mt {
+            compatible = "zmk,behavior-hold-tap";
+            label = "u_mt";
+            #binding-cells = <2>;
+            tapping_term_ms = 120;
+            flavor = "hold-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+
         u_lt: u_lt {
             compatible = "zmk,behavior-hold-tap";
             label = "u_lt";
             #binding-cells = <2>;
             tapping_term_ms = <U_TAPPING_TERM>;
             flavor = "tap-preferred";
+            bindings = <&mo>, <&kp>;
+        };
+
+        h_lt: h_lt {
+            compatible = "zmk,behavior-hold-tap";
+            label = "u_lt";
+            #binding-cells = <2>;
+            tapping_term_ms = 120;
+            flavor = "hold-preferred";
             bindings = <&mo>, <&kp>;
         };
 
@@ -112,27 +130,13 @@
             hold-trigger-key-positions = <40>;
             tapping-term-ms = <100>;
         };
-    };
 
-    macros {
-        shift_printscreen: shift_printscreen {
-            compatible = "zmk,behavior-macro";
+        esc_ctrl_grave: esc_ctrl_grave {
+            compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LSHIFT>
-                , <&macro_tap &kp PSCRN>
-                , <&macro_release &kp LSHIFT>
-                ;
-        };
-
-        ctrl_printscreen: ctrl_printscreen {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LCTRL>
-                , <&macro_tap &kp PSCRN>
-                , <&macro_release &kp LCTRL>
-                ;
+            bindings = <&u_mt LCTRL ESC>, <&kp GRAVE>;
+            mods = <(MOD_RGUI)>;
+            keep-mods = <>;
         };
     };
 
@@ -142,18 +146,18 @@
         BASE {
             bindings = <
 &kp TAB          &kp Q  &kp W  &kp E  &kp R  &kp T       &kp Y  &kp U  &kp I      &kp O    &kp P     &kp LBKT
-&u_mt LCTRL ESC  &kp A  &kp S  &kp D  &kp F  &kp G       &kp H  &kp J  &kp K      &kp L    &kp SEMI  &kp APOS
-&u_mt LALT RALT  &kp Z  &kp X  &kp C  &kp V  &kp B       &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RET
+&esc_ctrl_grave  &kp A  &kp S  &kp D  &kp F  &kp G       &kp H  &kp J  &kp K      &kp L    &kp SEMI  &kp APOS
+&h_mt LALT RALT  &kp Z  &kp X  &kp C  &kp V  &kp B       &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RET
 
-&lt 1 DEL    &kp LSHIFT    &lt 2 K_APP                   &u_mt LCTRL SPACE    &u_mt RGUI BKSP
+&mo 1            &kp LSHIFT    &h_lt 2 K_APP             &u_mt LCTRL SPACE    &u_mt RGUI BKSP
             >;
         };
 
         NAV {
             bindings = <
-&none               &kp PSCRN          &kp F1  &kp F4  &kp F7  &kp F10       &kp END        &kp PG_DN     &kp PG_UP     &kp HOME       &bt BT_CLR_ALL  &kp CAPS
-&shift_printscreen  &ctrl_printscreen  &kp F2  &kp F5  &kp F8  &kp F11       &kp LEFT       &kp DOWN      &kp    UP     &kp RIGHT      &mo 4           &mo 5
-&trans              &none              &kp F3  &kp F6  &kp F9  &kp F12       &bt BT_SEL 2   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 3   &bt BT_SEL 4    &bt BT_CLR
+&kp PSCRN           &none      &none         &mkp MCLK  &none      &none       &kp END        &kp PG_DN     &kp PG_UP     &kp HOME        &none           &kp CAPS
+&kp LS(PSCRN)       &kp LALT   &kp LCTRL     &mkp LCLK  &mo 4      &mo 6       &kp LEFT       &kp DOWN      &kp    UP     &kp RIGHT       &none           &bt BT_CLR_ALL
+&kp LC(PSCRN)       &none      &bt BT_NXT    &mkp RCLK  &none      &none       &kp LA(LEFT)   &none         &none         &kp LA(RIGHT)   &none           &bt BT_CLR
 
 &trans    &trans    &trans                                                   &kp LCTRL    &kp RGUI
             >;
@@ -162,8 +166,8 @@
         SYMNUM {
             bindings = <
 &trans      &none          &kp LPAR  &kp RPAR  &none     &none              &kp KP_MULTIPLY  &kp N7  &kp N8  &kp N9  &kp MINUS  &none
-&kp LSHIFT  &kp LS(MINUS)  &kp LBKT  &kp RBKT  &kp BSLH  &kp LS(BSLH)       &kp N0           &kp N4  &kp N5  &kp N6  &kp PLUS   &none
-&trans      &none          &kp LBRC  &kp RBRC  &none     &none              &kp KP_DIVIDE    &kp N1  &kp N2  &kp N3  &kp EQUAL  &kp RET
+&kp LSHIFT  &kp LS(MINUS)  &kp LBKT  &kp RBKT  &kp BSLH  &kp LS(BSLH)       &kp N0           &kp N4  &kp N5  &kp N6  &kp EQUAL  &none
+&trans      &none          &kp LBRC  &kp RBRC  &none     &none              &kp KP_DIVIDE    &kp N1  &kp N2  &kp N3  &kp PLUS   &kp RET
 
 &trans    &trans    &trans                                                  &kp SPACE    &u_mt BKSP LC(BKSP) // BKSP macro
             >;
@@ -181,11 +185,11 @@
 
         SCROLL {
             bindings = <
-&trans     &trans    &trans      &trans    &trans    &trans       &trans  &trans     &trans  &trans  &trans  &trans
-&kp LSHIFT &kp LALT  &mo    5    &none     &kp RGUI  &trans       &trans  &kp LCTRL  &trans  &trans  &trans  &trans
-&trans     &trans    &trans      &trans    &trans    &trans       &trans  &trans     &trans  &trans  &trans  &trans
+&kp PSCRN           &none      &none         &mkp MCLK  &none      &none       &kp END        &kp PG_DN     &kp PG_UP     &kp HOME        &none           &kp CAPS
+&kp LS(PSCRN)       &kp LALT   &kp LCTRL     &mkp LCLK  &none      &mo 6       &kp LEFT       &kp DOWN      &kp    UP     &kp RIGHT       &none           &bt BT_CLR_ALL
+&kp LC(PSCRN)       &none      &bt BT_NXT    &mkp RCLK  &none      &none       &kp LA(LEFT)   &none         &none         &kp LA(RIGHT)   &none           &bt BT_CLR
 
-&trans  &trans  &trans                               &trans  &trans
+&trans    &trans    &trans                                                   &kp LCTRL    &kp RGUI
             >;
         };
 
@@ -197,6 +201,15 @@
 
 &mkp LCLK  &mkp MCLK  &mkp RCLK                      &trans  &trans
             >;
+        };
+
+        FS {
+&none      &none  &none  &none     &none     &none              &none            &kp F7  &kp F8  &kp F9  &kp F12  &none
+&none      &none  &none  &none     &none     &none              &none            &kp F4  &kp F5  &kp F6  &kp F11  &none
+&none      &none  &none  &none     &none     &none              &none            &kp F1  &kp F2  &kp F3  &kp F10  &none
+
+&none    &none    &none                                                  &none    &none
+
         };
     };
 };
