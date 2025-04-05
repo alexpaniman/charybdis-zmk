@@ -154,7 +154,7 @@
 
         NAV {
             bindings = <
-&kp PSCRN           &none      &none         &mkp MCLK  &none      &none       &kp END        &kp PG_DN     &kp PG_UP     &kp HOME        &none           &kp CAPS
+&kp PSCRN           &none      &none         &mkp MCLK  &none      &none       &kp HOME       &kp PG_DN     &kp PG_UP     &kp END         &none           &kp CAPS
 &kp LS(PSCRN)       &kp LALT   &kp LCTRL     &mkp LCLK  &mo 4      &mo 6       &kp LEFT       &kp DOWN      &kp    UP     &kp RIGHT       &none           &bt BT_CLR_ALL
 &kp LC(PSCRN)       &none      &bt BT_NXT    &mkp RCLK  &none      &none       &kp LA(LEFT)   &none         &none         &kp LA(RIGHT)   &none           &bt BT_CLR
 
